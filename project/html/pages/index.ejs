@@ -8,12 +8,8 @@
   <!-- the classes 'page-header' and 'btn btn-default' create bootstrap components.  -->
   <!-- Check out more components here: http://getbootstrap.com/components/ -->
   <div class="page-header">
-    <h1>Stream</h1>
+    <h1>Leave a message!</h1>
   </div>
-
-  <button id="login-button" class="btn btn-default" type="button" onclick="toggleSignIn()">
-    Sign in to view stream
-  </button>
 
   <section id="add-post">
     <h2 class="mdl-card__title-text">
@@ -23,14 +19,15 @@
     <form id="message-form" action="#">
       <div class="form-group">
         <label for="new-post-title">
-          Post title...
+          Name
         </label>
         <input type="text" id="new-post-title">
       </div>
 
       <div class="form-group">
         <label for="new-post-body">
-          Post message...
+          Message <br />
+          (will be public!)
         </label>
         <textarea rows="3" id="new-post-body"></textarea>
       </div>
@@ -40,6 +37,10 @@
       </button>
     </form>
   </section>
+
+  <button id="login-button" class="btn btn-default" type="button" onclick="toggleSignIn()">
+    Sign in to view stream
+  </button>
 
   <div id="stream">
     Stream goes here:
