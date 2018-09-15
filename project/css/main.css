@@ -24,3 +24,14 @@ div label {
   font-size: 20;
   font-family:sans-serif;
 }
+
+#stream{
+  align-content:center;
+  overflow:scroll;
+}
+
+#stream div{
+  width:100px;
+  height:100px;
+  border-style:double;
+}
