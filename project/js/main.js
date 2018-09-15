@@ -9,6 +9,52 @@ function myFunction() {
   $("#doge-image").append(`<img class="img-circle" src="images/wowdoge.jpeg" />`);
 }
 
+// This function sets up a listener- '.on()' gets called automatically whenever something saved in '/stream/' changes.
+// It's main purpose is to iterate over the stream in the database and add each message to the page.
+function initializeStreamListener() {
+  const databaseStreamReference = firebase.database().ref('/stream/');
+
+  databaseStreamReference.on('value', function(snapshot) {
+    var messages = snapshot.val();
+    $('#stream').empty();
+
+    if (messages) {
+      Object.keys(messages).forEach(function (key) {
+        const message = messages[key];
+        $('#stream').append(`<div>${message.body}</div>`);
+      });
+    }
+  });
+}
+
+// This function gets called with the new message information.
+// It gets the user information and uses both to add the post to the database.
+function addMessage(body, title) {
+  var user = firebase.auth().currentUser;
+  var authorPic = user.photoURL;
+  var author = user.displayName;
+
+  var postData = {
+    author: author,
+    authorPic: authorPic,
+    title: title,
+    body: body
+  };
+
+  var newPostKey = firebase.database().ref().child('stream').push().key;
+  firebase.database().ref('/stream/' + newPostKey).set(postData);
+}
+
+
+// This gets called whenver the form is submitted (check out the index.ejs).
+// Uses jQuery to get the message info and passes it to 'addMessage to actually submit the info to firebase.
+function handleMessageFormSubmit() {
+  var body = $('#new-post-body').val();
+  var title = $('#new-post-title').val();
+
+  addMessage(body, title);
+}
+
 // Gets called whenever the user clicks "sign in" or "sign out".
 function toggleSignIn() {
   if (!firebase.auth().currentUser) { // if no user, handle login
