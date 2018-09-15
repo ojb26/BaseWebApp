@@ -21,7 +21,7 @@ function initializeStreamListener() {
     if (messages) {
       Object.keys(messages).forEach(function (key) {
         const message = messages[key];
-        $('#stream').append(`<div>${message.body} <br /> <em>Sent from ${message.title}</em> <br/>
+        $('#stream').append(`<div><br />${message.body} <br /> <em>Sent from ${message.title}</em> <br/>
           <img src="${message.authorPic}" alt="${message.author}"
         style="width:40px;height:40px;">
         </div>`);

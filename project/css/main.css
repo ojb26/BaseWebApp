@@ -28,6 +28,7 @@ div label {
 #stream{
   align-content:center;
   overflow:scroll;
+  max-height: 300px;
 }
 
 #stream div{
@@ -36,4 +37,5 @@ div label {
   width:120px;
   height:120px;
   border-style:double;
+  border-radius:150px;
 }
